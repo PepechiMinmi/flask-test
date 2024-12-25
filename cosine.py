@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, render_template
 import cv2
 import numpy as np
@@ -16,8 +17,8 @@ def upload():
     file2 = request.files['image2']
     
     # 画像を読み込む
-    img1 = cv2.imdecode(np.fromstring(file1.read(), np.uint8), cv2.IMREAD_COLOR)
-    img2 = cv2.imdecode(np.fromstring(file2.read(), np.uint8), cv2.IMREAD_COLOR)
+    img1 = cv2.imdecode(np.frombuffer(file1.read(), np.uint8), cv2.IMREAD_COLOR)
+    img2 = cv2.imdecode(np.frombuffer(file2.read(), np.uint8), cv2.IMREAD_COLOR)
 
     # 画像をリサイズ
     width, height = 500, 500
@@ -34,4 +35,6 @@ def upload():
     return f"Cosine Similarity: {similarity[0][0]}"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # RenderのPORT環境変数に基づいてポートを指定
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
