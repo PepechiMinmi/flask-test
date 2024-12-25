@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Similarity</title>
+</head>
+<body>
+    <h1>Upload Two Images for Similarity Comparison</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image1">Choose Image 1:</label>
+        <input type="file" name="image1" required><br><br>
+        <label for="image2">Choose Image 2:</label>
+        <input type="file" name="image2" required><br><br>
+        <button type="submit">Upload and Compare</button>
+    </form>
+</body>
+</html>
